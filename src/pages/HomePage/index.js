@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import './style.css';
 
+import HeaderForum from '../../components/HeaderForum';
+
 class HomePage extends Component {
   
   render() {
     return (
       <div>
-        <h1>HOME FORUM ALURA</h1>
+        <HeaderForum />
       </div>
     );
   }
