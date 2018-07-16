@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import './style.css';
 
+import IconeBusca from './resources/icon-busca.svg';
+import Avatar from './resources/avatar.svg';
+import IconeNotificacoes from './resources/icon-news-bell.svg';
+import LogoAlura from './resources/logo-alura.svg';
+
 class HeaderForum extends Component {
   
   render() {
@@ -16,7 +21,7 @@ class HeaderForum extends Component {
         <div class="natural-header natural-header-style">
             <button class="header-hamburguinho" aria-controls="headerMobile" aria-expanded="false"></button>
             <a href="#">
-                <img class="header-logo" src={require('./resources/logo-alura.svg')} alt="alura" />
+                <img class="header-logo" src={IconeBusca} alt="alura" />
             </a>
 
         </div>
@@ -28,7 +33,7 @@ class HeaderForum extends Component {
 
                     <a href="#" aria-label="busca" class="headerBusca-icon" role="button" aria-expanded="false"
                         aria-controls="headerBusca-form">
-                        <img class="headerBusca-icon-svg" src={require('./resources/icon-busca.svg')} alt=""/>
+                        <img class="headerBusca-icon-svg" src={IconeBusca} alt=""/>
                     </a>
                     <form action="https://cursos.alura.com.br/search" id="headerBusca-form" class="headerBusca-form headerBusca-form--retratil"
                         aria-hidden="true">
@@ -48,7 +53,7 @@ class HeaderForum extends Component {
 
                 <section class="headerMobile-content-headline">
                     <div class="content-headline-profile ">
-                        <img src={require('./resources/avatar.svg')} alt="Foto de Fulano de Tal" class="headline-profile-avatar" />
+                        <img src={Avatar} alt="Foto de Fulano de Tal" class="headline-profile-avatar" />
                         <span class="headline-profile-info">
                             <p class="profile-info-name">Fulano</p>
                             <a href="#" class="points-link header-profile-pontos" aria-label="seu total de pontos é 414.1k">
@@ -263,7 +268,7 @@ class HeaderForum extends Component {
                     </div>
 
                     <button aria-label="novidades" class="header-news-button notification-not-seen" aria-controls="headerNews" aria-expanded="false">
-                        <img src={require('./resources/icon-news-bell.svg')} alt=""/>
+                        <img src={IconeNotificacoes} alt=""/>
                     </button>
                     <div id="headerNews" class="header-news header-nav" aria-hidden="true" tabindex="-1" data-last-seen="37206" data-history-code="38828">
                         <span class="header-news-text">Novos Cursos</span>
@@ -395,7 +400,7 @@ class HeaderForum extends Component {
                 <a href="#" aria-label="busca" class="headerBusca-icon" role="button" aria-expanded="false"
                     aria-controls="headerBusca-form">
                     
-                    <img class="headerBusca-icon-svg" src={require('./resources/icon-busca.svg')} alt=""/>
+                    <img class="headerBusca-icon-svg" src={IconeBusca} alt=""/>
                 </a>
                 <form action="https://cursos.alura.com.br/search" id="headerBusca-form" class="headerBusca-form headerBusca-form--retratil"
                     aria-hidden="true">
@@ -410,7 +415,7 @@ class HeaderForum extends Component {
         <header class="header headerDesktop headerDesktop-style">
             <div class="container">
                 <a href="#">
-                    <img class="header-logo" src={require('./resources/logo-alura.svg')} alt="alura" />
+                    <img class="header-logo" src={LogoAlura} alt="alura" />
                 </a>
 
                 <nav class="headerDesktop-content-menu" role="navigation" aria-label="menu principal">
@@ -460,7 +465,7 @@ class HeaderForum extends Component {
 
                     <div class="content-menu-section content-menu-section-news">
                         <button aria-label="novidades" class="header-news-button notification-not-seen" aria-controls="headerNews" aria-expanded="false">
-                            <img src={require('./resources/icon-news-bell.svg')} alt=""/>
+                            <img src={IconeNotificacoes} alt=""/>
                         </button>
                         <div id="headerNews" class="header-news header-nav" aria-hidden="true" tabindex="-1" data-last-seen="37206" data-history-code="38828">
 
@@ -728,7 +733,7 @@ class HeaderForum extends Component {
                     <div class="content-menu-section content-menu-section-profile ">
                         <a role="button" tabindex="0" aria-label="minha conta" class="content-menu-button menu-button-desktop profile-info-name"
                             aria-expanded="false" aria-controls="profileList">
-                            <img src={require('./resources/avatar.svg')} alt="Foto do Fulano de Tal" class="headline-profile-avatar headline-profile-avatar"/>
+                            <img src={Avatar} alt="Foto do Fulano de Tal" class="headline-profile-avatar headline-profile-avatar"/>
                             <span class="screenReader-only">perfil de</span>Fulano
                         </a>
 
