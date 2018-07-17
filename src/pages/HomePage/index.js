@@ -3,6 +3,8 @@ import './style.css';
 
 import HeaderForum from '../../components/HeaderForum';
 import BannerForum from '../../components/BannerForum';
+import MenuForum from '../../components/MenuForum';
+
 class HomePage extends Component {
   
   render() {
@@ -10,6 +12,7 @@ class HomePage extends Component {
       <div>
         <HeaderForum />
         <BannerForum />
+        <MenuForum />
       </div>
     );
   }
