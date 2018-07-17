@@ -7,6 +7,7 @@ import MenuForum from '../../components/MenuForum';
 import ForumItem from '../../components/ForumItem';
 import PaginacaoForum from '../../components/PaginacaoForum';
 import FooterForum from '../../components/FooterForum';
+import CategoriaDashBoard from '../../components/CategoriaDashboard';
 
 class HomePage extends Component {
   
@@ -16,6 +17,7 @@ class HomePage extends Component {
         <HeaderForum />
         <BannerForum />
         <section class="allTopics container">
+          <CategoriaDashBoard />
           <MenuForum />
           <ForumItem />
           <ForumItem/>
