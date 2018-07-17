@@ -5,6 +5,7 @@ import HeaderForum from '../../components/HeaderForum';
 import BannerForum from '../../components/BannerForum';
 import MenuForum from '../../components/MenuForum';
 import ForumItem from '../../components/ForumItem';
+import PaginacaoForum from '../../components/PaginacaoForum';
 
 class HomePage extends Component {
   
@@ -19,6 +20,7 @@ class HomePage extends Component {
           <ForumItem/>
           <ForumItem />
           <ForumItem />
+          <PaginacaoForum />
         </section>  
       </div>
     );
