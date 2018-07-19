@@ -3,11 +3,11 @@ import './style.css';
 
 import HeaderForum from '../../components/HeaderForum';
 import BannerForum from '../../components/BannerForum';
-import MenuForum from '../../components/MenuForum';
-import ForumItem from '../../components/ForumItem';
+import MenuDuvidasForum from '../../components/MenuDuvidasForum';
+import ItemDuvidaForum from '../../components/ItemDuvidaForum';
 import PaginacaoForum from '../../components/PaginacaoForum';
 import FooterForum from '../../components/FooterForum';
-import CategoriaDashBoard from '../../components/CategoriaDashboard';
+import DashboardCategoriasForum from '../../components/DashboardCategoriasForum';
 
 class HomePage extends Component {
   
@@ -16,13 +16,13 @@ class HomePage extends Component {
       <div>
         <HeaderForum />
         <BannerForum />
-        <section class="allTopics container">
-          <CategoriaDashBoard />
-          <MenuForum />
-          <ForumItem />
-          <ForumItem/>
-          <ForumItem />
-          <ForumItem />
+        <section className="allTopics container">
+          <DashboardCategoriasForum />
+          <MenuDuvidasForum />
+          <ItemDuvidaForum />
+          <ItemDuvidaForum/>
+          <ItemDuvidaForum />
+          <ItemDuvidaForum />
           <PaginacaoForum />
         </section>
         <FooterForum />  

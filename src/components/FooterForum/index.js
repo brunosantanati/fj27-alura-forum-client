@@ -24,20 +24,20 @@ class FooterForum extends Component {
                         </li>
 
                         <li className="footer-menu-item">
-                            <a className="footer-menu-item-link" href="http://suporte.alura.com.br/" target="_blank">Dúvidas frequentes</a>
+                            <a className="footer-menu-item-link" href="http://suporte.alura.com.br/" target="_blank" rel="noopener noreferrer">Dúvidas frequentes</a>
                         </li>
 
                         <li className="footer-menu-item">
                             <a className="footer-menu-item-link" href="https://docs.google.com/forms/d/e/1FAIpQLScwKyaSvuFXK9SmMJoLPuYAS2qD_XAAnZPxMZij9qVeflbhBg/viewform"
-                                target="_blank">Sugira um curso</a>
+                                target="_blank" rel="noopener noreferrer">Sugira um curso</a>
                         </li>
 
                         <li className="footer-menu-item">
-                            <a className="footer-menu-item-link" href="https://trello.com/b/kredhcFj/alura-alunos-funcionalidades" target="_blank">Sugira uma funcionalidade</a>
+                            <a className="footer-menu-item-link" href="https://trello.com/b/kredhcFj/alura-alunos-funcionalidades" target="_blank" rel="noopener noreferrer">Sugira uma funcionalidade</a>
                         </li>
 
                         <li className="footer-menu-item">
-                            <a className="footer-menu-item-link" href="http://blog.alura.com.br/" target="_blank">Blog da Alura</a>
+                            <a className="footer-menu-item-link" href="http://blog.alura.com.br/" target="_blank" rel="noopener noreferrer">Blog da Alura</a>
                         </li>
                     </ul>
 
@@ -48,25 +48,25 @@ class FooterForum extends Component {
                 
                             <ul role="presentation" className="footer-socialMedia">
                                 <li className="footer-socialMedia-item">
-                                    <a className="footer-socialMedia-item-link" href="https://www.youtube.com/user/aluracursosonline" target="_blank" title="Youtube da Alura">
+                                    <a className="footer-socialMedia-item-link" href="https://www.youtube.com/user/aluracursosonline" target="_blank" title="Youtube da Alura" rel="noopener noreferrer">
                                     <img className="footer-socialMedia-item-icon footer-socialMedia-list-item-youtube" src={IconeYoutube} alt=""/>
                                     </a>
                                 </li>
 
                                 <li className="footer-socialMedia-item">
-                                    <a className="footer-socialMedia-item-link" href="https://www.facebook.com/AluraCursosOnline/" target="_blank" title="Facebook da Alura">
+                                    <a className="footer-socialMedia-item-link" href="https://www.facebook.com/AluraCursosOnline/" target="_blank" title="Facebook da Alura" rel="noopener noreferrer">
                                     <img className="footer-socialMedia-item-icon footer-socialMedia-list-item-facebook" src={IconeFacebook} alt=""/>
                                     </a>
                                 </li>
 
                                 <li className="footer-socialMedia-item">
-                                    <a className="footer-socialMedia-item-link" href="https://twitter.com/aluraonline" target="_blank" title="Twitter da Alura">
+                                    <a className="footer-socialMedia-item-link" href="https://twitter.com/aluraonline" target="_blank" title="Twitter da Alura" rel="noopener noreferrer">
                                     <img className="footer-socialMedia-item-icon footer-socialMedia-list-item-twitter" src={IconeTwitter} alt=""/>
                                     </a>
                                 </li>
 
                                 <li className="footer-socialMedia-item">
-                                    <a className="footer-socialMedia-item-link" href="http://hipsters.tech/" target="_blank" title="Podcast Hipsters Ponto Tech">
+                                    <a className="footer-socialMedia-item-link" href="http://hipsters.tech/" target="_blank" title="Podcast Hipsters Ponto Tech" rel="noopener noreferrer">
                                     <img className="footer-socialMedia-item-icon footer-socialMedia-list-item-hipsters" src={IconeHipsters} alt=""/>
                                     </a>
                                 </li>
@@ -79,14 +79,14 @@ class FooterForum extends Component {
                             <ul className="footer-hotLinks-menu footer-hotLinks-mobile">
                                 <li className="footer-hotLinks-item">
                                     <a className="footer-hotLinks-item-link" href="https://play.google.com/store/apps/details?id=br.com.alura.mobi&amp;hl=pt_BR"
-                                        target="_blank" title="Google Play Store">
+                                        target="_blank" title="Google Play Store" rel="noopener noreferrer">
                                     <img className="footer-hotLinks-item-icon footer-hotLinks-menu-item-mobile" src={IconeGooglePlay} alt=""/>
                                     </a>
                                 </li>
 
                                 <li className="footer-hotLinks-item">
                                     <a className="footer-hotLinks-item-link" href="https://itunes.apple.com/br/app/alura-cursos-online/id1225776635" target="_blank"
-                                        title="Apple App Store">
+                                        title="Apple App Store" rel="noopener noreferrer">
                                     <img className="footer-hotLinks-item-icon footer-hotLinks-menu-item-mobile" src={IconeAppStore} alt=""/>
                                     </a>
                                 </li>

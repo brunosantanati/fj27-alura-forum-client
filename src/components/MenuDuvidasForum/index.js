@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './style.css';
 
-class MenuForum extends Component {
+class MenuDuvidasForum extends Component {
     render() {
         return (
         <div>
@@ -99,4 +99,4 @@ class MenuForum extends Component {
         </div>
         );
     }
-} export default MenuForum;
+} export default MenuDuvidasForum;

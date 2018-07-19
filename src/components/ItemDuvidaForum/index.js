@@ -3,7 +3,7 @@ import './style.css';
 import IconeNotSolved from './resources/icon-not-solved.svg';
 import FotoPerfil from './resources/0f4657fc82d9fbe2d15eb29daaf7daa7.png';
 
-class ForumItem extends Component {
+class ItemDuvidaForum extends Component {
     render() {
         return (
         <div>
@@ -11,7 +11,7 @@ class ForumItem extends Component {
             <li className="forumList-item" itemID="/forum/topico-respostas-iguais-na-questao-sobre-fluxo-binario-65105" itemScope="" itemType="http://schema.org/DiscussionForumPosting">
                 <div className="forumList-item-subject">
                     <div className="forumList-item-icon">
-                        <img height="30px" width="30px" className="forumList-icon-notsolved" src={IconeNotSolved} />
+                        <img height="30px" width="30px" className="forumList-icon-notsolved" src={IconeNotSolved} alt="" />
                     </div>
 
                     <div className="forumList-item-subject-info">
@@ -42,7 +42,7 @@ class ForumItem extends Component {
                 <div className="forumList-item-wrapper">
                     <div className="forumList-item-infoGroup">
                         <a href="https://cursos.alura.com.br/user/clecio1201" className="forumList-item-info" itemProp="author" itemScope="" itemType="http://schema.org/Person">
-                            <img className="forumList-item-info-avatar" src={FotoPerfil} />
+                            <img className="forumList-item-info-avatar" src={FotoPerfil} alt="" />
                             <div className="forumList-item-info-description">
                                 <p className="forumList-item-info-name">por
                                     <strong itemProp="name">Clecio</strong>
@@ -68,4 +68,4 @@ class ForumItem extends Component {
         </div>
         );
     }
-} export default ForumItem;
+} export default ItemDuvidaForum;

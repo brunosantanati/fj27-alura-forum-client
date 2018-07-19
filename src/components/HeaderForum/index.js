@@ -11,16 +11,9 @@ class HeaderForum extends Component {
   render() {
     return (
       <div>
-        {/* <!-- Google Tag Manager (noscript) --> */}
-        <noscript>
-            <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TN542JN" height="0" width="0" className="googleIframe-style"></iframe>
-        </noscript>
-        
-        {/* <!-- End Google Tag Manager (noscript) --> */}
-
         <div className="natural-header natural-header-style">
             <button className="header-hamburguinho" aria-controls="headerMobile" aria-expanded="false"></button>
-            <a href="#">
+            <a href="#page-header">
                 <img className="header-logo" src={IconeBusca} alt="alura" />
             </a>
 
@@ -31,7 +24,7 @@ class HeaderForum extends Component {
             <section id="headerBusca" className="headerBusca ">
                 <div className="container">
 
-                    <a href="#" aria-label="busca" className="headerBusca-icon" role="button" aria-expanded="false"
+                    <a href="#page-header" aria-label="busca" className="headerBusca-icon" role="button" aria-expanded="false"
                         aria-controls="headerBusca-form">
                         <img className="headerBusca-icon-svg" src={IconeBusca} alt=""/>
                     </a>
@@ -56,7 +49,7 @@ class HeaderForum extends Component {
                         <img src={Avatar} alt="Foto de Fulano de Tal" className="headline-profile-avatar" />
                         <span className="headline-profile-info">
                             <p className="profile-info-name">Fulano</p>
-                            <a href="#" className="points-link header-profile-pontos" aria-label="seu total de pontos é 414.1k">
+                            <a href="#page-header" className="points-link header-profile-pontos" aria-label="seu total de pontos é 414.1k">
                                 <div className="levelMenu-header-user-points-xp" aria-hidden="true">
                                     414.1k
                                     <span className="levelMenu-header-user-points-xp-name">xp</span>
@@ -397,7 +390,7 @@ class HeaderForum extends Component {
         <section id="headerBusca" className="headerBusca headerBusca-desktop">
             <div className="container">
 
-                <a href="#" aria-label="busca" className="headerBusca-icon" role="button" aria-expanded="false"
+                <a href="#page-header" aria-label="busca" className="headerBusca-icon" role="button" aria-expanded="false"
                     aria-controls="headerBusca-form">
                     
                     <img className="headerBusca-icon-svg" src={IconeBusca} alt=""/>
@@ -412,9 +405,9 @@ class HeaderForum extends Component {
             </div>
         </section>
 
-        <header className="header headerDesktop headerDesktop-style">
+        <header id="page-header" className="header headerDesktop headerDesktop-style">
             <div className="container">
-                <a href="#">
+                <a href="#page-header">
                     <img className="header-logo" src={LogoAlura} alt="alura" />
                 </a>
 
@@ -519,7 +512,7 @@ class HeaderForum extends Component {
                     </div>
 
                     <div className="content-menu-section content-menu-section-levelMenu">
-                        <a href="#" className="points-link header-profile-pontos" aria-label="seu total de pontos é 414.1k">
+                        <a href="#page-header" className="points-link header-profile-pontos" aria-label="seu total de pontos é 414.1k">
                             <div className="levelMenu-header-user-points-xp" aria-hidden="true">
                                 414.1k
                                 <span className="levelMenu-header-user-points-xp-name">xp</span>
