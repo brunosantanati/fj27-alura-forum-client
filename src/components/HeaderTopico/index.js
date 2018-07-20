@@ -8,7 +8,7 @@ class HeaderTopico extends Component {
             <header className="topic-header">
                 <div className="topic-header-container">
                     <div className="topic-header-container-info">
-                        <h1 itemprop="name" className="topic-header-container-title">
+                        <h1 itemProp="name" className="topic-header-container-title">
                             Como resolver o assincronismo de uma Post Request no Ionic?
                         </h1>
 
@@ -34,7 +34,7 @@ class HeaderTopico extends Component {
 
                     <div className="topic-header-container-details">
                         <div className="topic-header-container-details-date">
-                            <time itemprop="dateCreated" datetime="03/07/18">
+                            <time itemProp="dateCreated" dateTime="03/07/18">
                                 2 semanas atrás
                             </time>
                         </div>
@@ -44,12 +44,12 @@ class HeaderTopico extends Component {
                         </div>
 
                         <div className="topic-header-container-details-watch">
-                            <label className="topic-header-container-details-labelFollow" for="follow">acompanhar tópico</label>
+                            <label className="topic-header-container-details-labelFollow" htmlFor="follow">acompanhar tópico</label>
                             <input className="topic-header-container-details-input" id="follow" type="checkbox" name="follow" data-topic="64479" />
                         </div>
 
                         <div className="topic-header-container-details-pin">
-                            <label className="topic-header-container-details-labelPin" for="pin">pinar tópico</label>
+                            <label className="topic-header-container-details-labelPin" htmlFor="pin">pinar tópico</label>
                             <input className="topic-header-container-details-input" id="pin" type="checkbox" name="pin" data-topic="64479" />
                         </div>
                     </div>
