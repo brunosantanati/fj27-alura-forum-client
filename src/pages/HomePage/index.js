@@ -28,7 +28,11 @@ class HomePage extends Component {
 
         throw new Error('Não foi possível obter dados da API');
       })
-      .then(json => this.setState({duvidas: json}))
+      .then(json => {
+        console.log(json);
+        this.setState({duvidas: json})
+      
+      })
       .catch(e => alert(e.message)); 
   }
 

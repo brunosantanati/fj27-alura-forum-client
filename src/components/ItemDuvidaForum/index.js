@@ -26,15 +26,15 @@ class ItemDuvidaForum extends Component {
                             <ol className="topic-breadCrumb-list">
 
                                 <li className="topic-breadCrumb-item">
-                                    <a id="topic-breadCrumb-item-category-65105" href="#" className="topic-breadCrumb-item-link">{duvida.course.subcategory.category.name}</a>
+                                    <a id="topic-breadCrumb-item-category-65105" href="#" className="topic-breadCrumb-item-link">{duvida.categoryName}</a>
                                 </li>
 
                                 <li className="topic-breadCrumb-item">
-                                    <a id="topic-breadCrumb-item-subcategory-65105" href="#" className="topic-breadCrumb-item-link">{duvida.course.subcategory.name}</a>
+                                    <a id="topic-breadCrumb-item-subcategory-65105" href="#" className="topic-breadCrumb-item-link">{duvida.subcategoryName}</a>
                                 </li>
 
                                 <li className="topic-breadCrumb-item">
-                                    <a id="topic-breadCrumb-item-course-65105" href="#" className="topic-breadCrumb-item-link">{duvida.course.name}</a>
+                                    <a id="topic-breadCrumb-item-course-65105" href="#" className="topic-breadCrumb-item-link">{duvida.courseName}</a>
                                 </li>
                             </ol>
                         </nav>
@@ -47,10 +47,10 @@ class ItemDuvidaForum extends Component {
                             <img className="forumList-item-info-avatar" src={FotoPerfil} alt="" />
                             <div className="forumList-item-info-description">
                                 <p className="forumList-item-info-name">por
-                                    <strong itemProp="name">{duvida.owner.name}</strong>
+                                    <strong itemProp="name">{duvida.ownerName}</strong>
                                 </p>
                                 <time itemProp="dateModified" dateTime="2018-07-12 15:38">
-                                    <p className="forumList-item-info-updatedAt">atualizado 5 minutos atrás</p>
+                                    <p className="forumList-item-info-updatedAt">atualizado {duvida.secondsSinceLastUpdate} segundos atrás</p>
                                 </time>
                             </div>
                         </a>
@@ -58,7 +58,7 @@ class ItemDuvidaForum extends Component {
 
                     <div className="forumList-item-answers" itemProp="interactionStatistic" itemScope="" itemType="http://schema.org/InteractionCounter">
                         <link itemProp="interactionType" href="http://schema.org/CommentAction"/>
-                        <span className="forumList-item-answers-number" itemProp="userInteractionCount">{duvida.answers.length}</span>
+                        <span className="forumList-item-answers-number" itemProp="userInteractionCount">{duvida.numberOfResponses}</span>
                         <span className="forumList-item-answers-description">
                             respostas
                         </span>
