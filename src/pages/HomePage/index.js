@@ -11,18 +11,40 @@ import DashboardCategoriasForum from '../../components/DashboardCategoriasForum'
 
 class HomePage extends Component {
   
+  constructor() {
+    super();
+    this.state = {
+      duvidas: [] 
+    }
+  }
+  
+  componentDidMount() {
+    const uri = 'http://localhost:8080/api/topics';
+    
+    fetch(uri)
+      .then(response => {
+        if(response.ok)
+          return response.json();
+
+        throw new Error('Não foi possível obter dados da API');
+      })
+      .then(json => this.setState({duvidas: json}))
+      .catch(e => alert(e.message)); 
+  }
+
   render() {
     return (
       <div>
-        <HeaderForum />
+        <HeaderForum hasLoggedUser={true}/>
         <BannerForum />
         <section className="allTopics container">
           <DashboardCategoriasForum />
           <MenuDuvidasForum />
-          <ItemDuvidaForum />
-          <ItemDuvidaForum/>
-          <ItemDuvidaForum />
-          <ItemDuvidaForum />
+
+          {
+            this.state.duvidas.map(duvida => <ItemDuvidaForum duvida={duvida} />)
+          }
+          
           <PaginacaoForum />
         </section>
         <FooterForum />  

@@ -6,5 +6,5 @@ import TopicoPage from './pages/TopicoPage';
 import LoginPage from './pages/LoginPage';
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<LoginPage />, document.getElementById('root'));
+ReactDOM.render(<HomePage />, document.getElementById('root'));
 registerServiceWorker();
