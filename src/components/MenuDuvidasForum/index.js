@@ -3,6 +3,17 @@ import './style.css';
 
 class MenuDuvidasForum extends Component {
 
+    constructor() {
+        super();
+        this.state = {
+            categorySelectorActive: false
+        }
+    }
+
+    toggleCategorySelect = () => {
+        this.setState({categorySelectorActive: !this.state.categorySelectorActive})
+    } 
+
     buscaDuvidas = (event) => {
         var recarregaDuvidas = this.props.callback;
     
@@ -37,7 +48,10 @@ class MenuDuvidasForum extends Component {
 
                     <div className="categories-restrictions-and-search">
                         <fieldset className="select-filter">
-                        <div className="categoryFilter cs-select" tabIndex="0">
+                        <div className={`categoryFilter cs-select ${this.state.categorySelectorActive ? 'cs-active' : ''}`} 
+                             onClick={this.toggleCategorySelect} 
+                             tabIndex="0">
+
                             <span className="cs-placeholder todasCategorias">Todas as categorias</span>
                             <div className="cs-options">
                                 <ul>
@@ -105,13 +119,6 @@ class MenuDuvidasForum extends Component {
                                 Sem solução
                             </label>
                         </fieldset>
-
-                       
-                        <form id="headerBusca-form" className="forumSearch" action="https://cursos.alura.com.br/forum/search">
-                            <label htmlFor="forumSearch-input" className="forumSearch-label">Busque por assunto</label>
-                            <input id="forumSearch-input" className="forumSearch-input" type="text" name="term" placeholder="Busque por assunto"/>
-                            <button className="forumSearch-submit">Buscar</button>
-                        </form>
                     </div>
                 </div>
             </section>
