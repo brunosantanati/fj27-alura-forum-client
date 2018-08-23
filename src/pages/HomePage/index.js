@@ -18,7 +18,7 @@ class HomePage extends Component {
     }
   }
   
-  componentDidMount() {
+  componentDidMount = () => {
     const uri = 'http://localhost:8080/api/topics';
     
     fetch(uri)
@@ -33,7 +33,11 @@ class HomePage extends Component {
         this.setState({duvidas: json})
       
       })
-      .catch(e => alert(e.message)); 
+      .catch(e => alert(e.message));
+  }
+
+  recarregaDuvidas = (duvidas) => {
+    this.setState({duvidas: duvidas})
   }
 
   render() {
@@ -43,7 +47,7 @@ class HomePage extends Component {
         <BannerForum />
         <section className="allTopics container">
           <DashboardCategoriasForum />
-          <MenuDuvidasForum />
+          <MenuDuvidasForum callback={this.recarregaDuvidas}/>
 
           {
             this.state.duvidas.map(duvida => <ItemDuvidaForum duvida={duvida} />)
@@ -51,7 +55,8 @@ class HomePage extends Component {
           
           <PaginacaoForum />
         </section>
-        <FooterForum />  
+        <FooterForum /> 
+ 
       </div>
     );
   }

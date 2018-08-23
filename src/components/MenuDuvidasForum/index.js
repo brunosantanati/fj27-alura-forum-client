@@ -2,6 +2,26 @@ import React, { Component } from 'react';
 import './style.css';
 
 class MenuDuvidasForum extends Component {
+
+    buscaDuvidas = (event) => {
+        var recarregaDuvidas = this.props.callback;
+    
+        const resource = event.target.dataset.uri;
+        const uri = `http://localhost:8080/${resource}`;
+    
+        fetch(uri)
+            .then(response => {
+                if(response.ok)
+                return response.json();
+
+                throw new Error('Não foi possível obter dados da API');
+            })
+            .then(json => {
+                recarregaDuvidas(json);
+            })
+            .catch(e => alert(e.message));
+    }
+
     render() {
         return (
         <div>
@@ -70,17 +90,17 @@ class MenuDuvidasForum extends Component {
                         </fieldset>
 
                         <fieldset className="restrictions">
-                            <input type="radio" className="restrictionsInput--all" name="restriction" value="todos" id="todos" checked=""/>
+                            <input className="restrictionsInput--all" type="radio"  name="restriction" value="todos" id="todos" data-uri="api/topics" onChange={this.buscaDuvidas}/>
                             <label className="restrictionsLabel restrictionsLabel--all" htmlFor="todos">
                                 Todos
                             </label>
 
-                            <input className="restrictionsInput--all" type="radio" name="restriction" value="sem-resposta" id="sem-resposta"/>
+                            <input className="restrictionsInput--all" type="radio" name="restriction" value="sem-resposta" id="sem-resposta" data-uri="api/topics/not-answered" onChange={this.buscaDuvidas} />
                             <label className="restrictionsLabel restrictionsLabel--all" htmlFor="sem-resposta">
                                 Sem resposta
                             </label>
 
-                            <input className="restrictionsInput--all" type="radio" name="restriction" value="sem-solucao" id="sem-solucao"/>
+                            <input className="restrictionsInput--all" type="radio" name="restriction" value="sem-solucao" id="sem-solucao" data-uri="api/topics/not-solved" onChange={this.buscaDuvidas}/>
                             <label className="restrictionsLabel restrictionsLabel--all" htmlFor="sem-solucao">
                                 Sem solução
                             </label>
