@@ -1,5 +1,5 @@
-.todasCategorias {
-    background-color: #697074;
+.menuTodasCategorias {
+    background-color:#697074;
 }
 
 .menuMobile{
@@ -24,8 +24,4 @@
 
 .menuBusiness {
     background-color:#0079ac;
-}
-
-.menuOffTopic {
-    background-color:#9eb3c1;
 }

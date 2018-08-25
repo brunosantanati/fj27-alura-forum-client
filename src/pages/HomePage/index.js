@@ -28,11 +28,7 @@ class HomePage extends Component {
 
         throw new Error('Não foi possível obter dados da API');
       })
-      .then(json => {
-        console.log(json);
-        this.setState({duvidas: json})
-      
-      })
+      .then(json => this.setState({duvidas: json}))
       .catch(e => alert(e.message));
   }
 
@@ -47,10 +43,10 @@ class HomePage extends Component {
         <BannerForum />
         <section className="allTopics container">
           <DashboardCategoriasForum />
-          <MenuDuvidasForum callback={this.recarregaDuvidas}/>
+          <MenuDuvidasForum atualizaDuvidasCallback={this.recarregaDuvidas}/>
 
           {
-            this.state.duvidas.map(duvida => <ItemDuvidaForum duvida={duvida} />)
+            this.state.duvidas.map(duvida => <ItemDuvidaForum duvida={duvida} key={String(duvida.id)}/>)
           }
           
           <PaginacaoForum />
