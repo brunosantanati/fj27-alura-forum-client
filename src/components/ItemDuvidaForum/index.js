@@ -26,15 +26,15 @@ class ItemDuvidaForum extends Component {
                             <ol className="topic-breadCrumb-list">
 
                                 <li className="topic-breadCrumb-item">
-                                    <a id="topic-breadCrumb-item-category-65105" href="#" className="topic-breadCrumb-item-link">{duvida.categoryName}</a>
+                                    <a href="#" className={`topic-breadCrumb-item-link topic-breadCrumb-item-category-${duvida.categoryName}`}>{duvida.categoryName}</a>
                                 </li>
 
                                 <li className="topic-breadCrumb-item">
-                                    <a id="topic-breadCrumb-item-subcategory-65105" href="#" className="topic-breadCrumb-item-link">{duvida.subcategoryName}</a>
+                                    <a href="#" className={`topic-breadCrumb-item-link topic-breadCrumb-item-category-${duvida.categoryName} subcategory`}>{duvida.subcategoryName}</a>
                                 </li>
 
                                 <li className="topic-breadCrumb-item">
-                                    <a id="topic-breadCrumb-item-course-65105" href="#" className="topic-breadCrumb-item-link">{duvida.courseName}</a>
+                                    <a href="#" className={`topic-breadCrumb-item-link topic-breadCrumb-item-category-${duvida.categoryName} course`}>{duvida.courseName}</a>
                                 </li>
                             </ol>
                         </nav>
