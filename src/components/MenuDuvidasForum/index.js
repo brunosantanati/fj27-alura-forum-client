@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './style.css';
 
+import FetchAluraForumService from '../../services/FetchAluraForumService';
 import CategoriasDoForum from '../../CategoriasDoForum';
 
 class MenuDuvidasForum extends Component {
@@ -32,32 +33,25 @@ class MenuDuvidasForum extends Component {
         const { atualizaDuvidasCallback } = this.props;
         const { filtroAtivo, categoriaAtiva } = this.state;
         
-        const uri = this.resolveURI(filtroAtivo, categoriaAtiva);
-        
-        fetch(uri)
-            .then(response => {
-                if(response.ok)
-                return response.json();
-
-                throw new Error('Não foi possível obter dados da API');
-            })
+        const resource = this.resolveURL(filtroAtivo, categoriaAtiva);
+        FetchAluraForumService.get(resource)
             .then(json => {
                 atualizaDuvidasCallback(json);
             })
             .catch(e => alert(e.message));
     }
 
-    resolveURI(filtro, categoria) {
-        let uri = `http://localhost:8080/api/topics/`;
+    resolveURL(filtro, categoria) {
+        let resource = `topics/`;
 
         if (filtro !== '')
-            uri += filtro;
+            resource += filtro;
             
         if (JSON.stringify(categoria) !== JSON.stringify(CategoriasDoForum['TODAS']))
-            uri += `?categoryName=${categoria.nome}`
+            resource += `?categoryName=${categoria.nome}`
 
-        console.log(uri)    
-        return uri;
+        console.log(resource)    
+        return resource;
     }
 
     render() {

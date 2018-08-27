@@ -8,6 +8,7 @@ import ItemDuvidaForum from '../../components/ItemDuvidaForum';
 import PaginacaoForum from '../../components/PaginacaoForum';
 import FooterForum from '../../components/FooterForum';
 import DashboardCategoriasForum from '../../components/DashboardCategoriasForum';
+import FetchAluraForumService from '../../services/FetchAluraForumService';
 
 class HomePage extends Component {
   
@@ -18,16 +19,8 @@ class HomePage extends Component {
     }
   }
   
-  componentDidMount = () => {
-    const uri = 'http://localhost:8080/api/topics';
-    
-    fetch(uri)
-      .then(response => {
-        if(response.ok)
-          return response.json();
-
-        throw new Error('Não foi possível obter dados da API');
-      })
+  componentDidMount = () => {  
+    FetchAluraForumService.get('topics/')
       .then(json => this.setState({duvidas: json}))
       .catch(e => alert(e.message));
   }
