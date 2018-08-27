@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './style.css';
 
+import CategoriasDoForum from '../../CategoriasDoForum';
+
 class MenuDuvidasForum extends Component {
 
     constructor() {
@@ -134,35 +136,3 @@ class MenuDuvidasForum extends Component {
 } 
 
 export default MenuDuvidasForum;
-
-
-const CategoriasDoForum = {
-    'TODAS': {
-        nome: 'Todas as categorias', 
-        menuClass: 'menuTodasCategorias'
-    },
-    'MOBILE': {
-        nome: 'Mobile', 
-        menuClass: 'menuMobile'
-    },
-    'PROGRAMACAO': {
-        nome: 'Programação', 
-        menuClass: 'menuProgramacao'
-    },
-    'FRONT': {
-        nome: 'Front-end', 
-        menuClass: 'menuFrontEnd'
-    },
-    'INFRA': {
-        nome: 'Infraestrutura', 
-        menuClass: 'menuInfraestrutura'
-    },
-    'DESIGN': {
-        nome: 'Design', 
-        menuClass: 'menuDesign'
-    },
-    'BUSINESS': {
-        nome: 'Business', 
-        menuClass: 'menuBusiness'
-    }
-};
