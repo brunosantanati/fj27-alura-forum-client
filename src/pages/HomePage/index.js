@@ -9,40 +9,21 @@ import PaginacaoForum from '../../components/PaginacaoForum';
 import FooterForum from '../../components/FooterForum';
 import DashboardCategoriasForum from '../../components/DashboardCategoriasForum';
 import FetchAluraForumService from '../../services/FetchAluraForumService';
+import BuscaDuvidasService from '../../services/BuscaDuvidasService';
+import PainelDuvidasForum from '../../components/PainelDuvidasForum';
 
 class HomePage extends Component {
   
-  constructor() {
-    super();
-    this.state = {
-      duvidas: [] 
-    }
-  }
-  
-  componentDidMount = () => {  
-    FetchAluraForumService.get('topics/')
-      .then(json => this.setState({duvidas: json}))
-      .catch(e => alert(e.message));
-  }
-
-  recarregaDuvidas = (duvidas) => {
-    this.setState({duvidas: duvidas})
-  }
-
   render() {
+
     return (
       <div>
         <HeaderForum hasLoggedUser={true}/>
         <BannerForum />
         <section className="allTopics container">
-          <DashboardCategoriasForum />
-          <MenuDuvidasForum atualizaDuvidasCallback={this.recarregaDuvidas}/>
+        
+          <PainelDuvidasForum />
 
-          {
-            this.state.duvidas.map(duvida => <ItemDuvidaForum duvida={duvida} key={String(duvida.id)}/>)
-          }
-          
-          <PaginacaoForum />
         </section>
         <FooterForum /> 
  

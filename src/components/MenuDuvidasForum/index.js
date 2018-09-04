@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './style.css';
 
-import FetchAluraForumService from '../../services/FetchAluraForumService';
+import BuscaDuvidasService from '../../services/BuscaDuvidasService';
 import CategoriasDoForum from '../../CategoriasDoForum';
 
 class MenuDuvidasForum extends Component {
@@ -20,38 +20,22 @@ class MenuDuvidasForum extends Component {
     }
 
     selecionaCategoria = (categoria) => {
-        this.setState({categoriaAtiva: CategoriasDoForum[categoria]})
-        setTimeout(() => this.buscaDuvidas(), 300);
+        this.setState({categoriaAtiva: CategoriasDoForum[categoria]}, 
+            this.buscaDuvidas);
     }
 
     toggleRestricoes = (filtro) => {
-        this.setState({filtroAtivo: filtro})
-        setTimeout(() => this.buscaDuvidas(), 300);
+        this.setState({filtroAtivo: filtro}, 
+            this.buscaDuvidas);
     }
 
     buscaDuvidas = () => {
-        const { atualizaDuvidasCallback } = this.props;
-        const { filtroAtivo, categoriaAtiva } = this.state;
-        
-        const resource = this.resolveURL(filtroAtivo, categoriaAtiva);
-        FetchAluraForumService.get(resource)
-            .then(json => {
-                atualizaDuvidasCallback(json);
-            })
-            .catch(e => alert(e.message));
-    }
+        const options = {
+            categoria: this.state.categoriaAtiva,
+            status: this.state.filtroAtivo
+        }
 
-    resolveURL(filtro, categoria) {
-        let resource = `topics/`;
-
-        if (filtro !== '')
-            resource += filtro;
-            
-        if (JSON.stringify(categoria) !== JSON.stringify(CategoriasDoForum['TODAS']))
-            resource += `?categoryName=${categoria.nome}`
-
-        console.log(resource)    
-        return resource;
+        this.props.atualizaDuvidasCallback(options);
     }
 
     render() {
@@ -111,12 +95,12 @@ class MenuDuvidasForum extends Component {
                                 </label>
 
                                 <input className="restrictionsInput--all" type="radio" name="restriction" value="sem-resposta" id="sem-resposta"/>
-                                <label className="restrictionsLabel restrictionsLabel--all" htmlFor="sem-resposta" onClick={() => this.toggleRestricoes('not-answered')}>
+                                <label className="restrictionsLabel restrictionsLabel--all" htmlFor="sem-resposta" onClick={() => this.toggleRestricoes('NOT_ANSWERED')}>
                                     Sem resposta
                                 </label>
 
                                 <input className="restrictionsInput--all" type="radio" name="restriction" value="sem-solucao" id="sem-solucao"/>
-                                <label className="restrictionsLabel restrictionsLabel--all" htmlFor="sem-solucao" onClick={() => this.toggleRestricoes('not-solved')}>
+                                <label className="restrictionsLabel restrictionsLabel--all" htmlFor="sem-solucao" onClick={() => this.toggleRestricoes('NOT_SOLVED')}>
                                     Sem solução
                                 </label>
                             </fieldset>
