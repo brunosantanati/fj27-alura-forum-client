@@ -4,14 +4,14 @@ import LinkPrevNext from './components/LinkPrevNext';
 
 class PaginacaoForum extends Component {
 
-    _renderLinks = (numberOfLinks) => {
-        const { paginaAtual, totalDePaginas } = this.props;
+    _renderLinks = (paginaAtual, totalDePaginas) => {
         const links = []
+        const numeroMaximoDeLinks = 5;
 
-        if (totalDePaginas <= 5) {
-            for (let index = 0; index < numberOfLinks; index++) {
+        if (totalDePaginas <= numeroMaximoDeLinks) {
+            for (let index = 0; index < totalDePaginas; index++) {
                 const link = 
-                    <a href="#" key={index} onClick={() => this.buscaDuvidas(index)}               
+                    <a href="#" key={String(index)} onClick={() => this._buscaDuvidas(index)}               
                             className={`paginationLink ${index === paginaAtual ? 'busca-botao-selecionado': ''}`}>
                         {index + 1}
                     </a>
@@ -25,33 +25,27 @@ class PaginacaoForum extends Component {
     }
 
     _renderMultiLinks = (paginaAtual, totalDePaginas) => {
-        let multiLinks = [];
-        let atualProximaDoInicio = false;
-        let atualProximaDoFim = false;
+        let paginasVisiveis = [];
 
-        if (paginaAtual <= 2) {
-            multiLinks = [0, 1, 2, 3, (totalDePaginas - 1)];
-            atualProximaDoInicio = true;
-            atualProximaDoFim = false;
-            
-        } else if (paginaAtual >= (totalDePaginas - 3)) {
-            multiLinks = [0, (totalDePaginas - 4), (totalDePaginas - 3), (totalDePaginas - 2), (totalDePaginas - 1)]
-            atualProximaDoInicio = false;
-            atualProximaDoFim = true
+        const ultimaPagina = totalDePaginas - 1;
+        const paginaAtualProximaDoInicio = paginaAtual <= 2;
+        const paginaAtualProximaDoFim = paginaAtual >= ultimaPagina - 2;
 
-        } else {
-            multiLinks = [0, (paginaAtual - 1), paginaAtual, (paginaAtual + 1), (totalDePaginas - 1)];
-            atualProximaDoInicio = false;
-            atualProximaDoFim = false;
-        }
+        if (paginaAtualProximaDoInicio)
+            paginasVisiveis = [0, 1, 2, 3, ultimaPagina];
+    
+        else if (paginaAtualProximaDoFim)
+            paginasVisiveis = [0, ultimaPagina - 3, ultimaPagina - 2, ultimaPagina - 1, ultimaPagina]
+
+        else
+            paginasVisiveis = [0, paginaAtual - 1, paginaAtual, paginaAtual + 1, ultimaPagina];
             
-        return multiLinks.map((pagina, index) => {
+        return paginasVisiveis.map((pagina, index) => {
             return (
-                <a href="#" onClick={() => this.buscaDuvidas(pagina)} key={String(pagina)}
+                <a href="#" onClick={() => this._buscaDuvidas(pagina)} key={String(pagina)}
                         className={`paginationLink 
                             ${paginaAtual === pagina ? 'busca-botao-selecionado': ''}
-                            ${(index === 1 && !atualProximaDoInicio) ? 'paginationLink--withSuspensionPoints' : ''} 
-                            ${index === 4 && !atualProximaDoFim ? 'paginationLink--withSuspensionPoints' : ''} 
+                            ${this._temPaginasOcultas(index, paginaAtualProximaDoInicio, paginaAtualProximaDoFim) ? 'paginationLink--withSuspensionPoints' : ''}  
                         `}>   
                     {pagina + 1}
                 </a>
@@ -59,13 +53,17 @@ class PaginacaoForum extends Component {
         });
     }
 
-    buscaDuvidas = (pagina) => {
+    _buscaDuvidas = (pagina) => {
         const options = { ...this.props.filtros, pagina }
         this.props.atualizaDuvidasCallback(options);
     }
 
+    _temPaginasOcultas(index, paginaAtualProximaDoInicio, paginaAtualProximaDoFim) {
+        return (index === 1 && !paginaAtualProximaDoInicio) || (index === 4 && !paginaAtualProximaDoFim);
+    }
+
     render() {
-        const { totalDePaginas, paginaAtual } = this.props;
+        const { paginaAtual, totalDePaginas } = this.props;
         const ultimaPagina = totalDePaginas - 1;
 
         return totalDePaginas > 1 &&
@@ -73,14 +71,14 @@ class PaginacaoForum extends Component {
                 <nav className="busca-paginacao">
                     
                     <LinkPrevNext rel="prev" disabled={paginaAtual === 0}
-                            atualizaDuvidasCallback={() => this.buscaDuvidas(paginaAtual - 1)}/>
+                            atualizaDuvidasCallback={() => this._buscaDuvidas(paginaAtual - 1)}/>
                     
                     <nav className="busca-paginacao-links">
-                        {this._renderLinks(totalDePaginas)} 
+                        {this._renderLinks(paginaAtual, totalDePaginas)} 
                     </nav>
 
                     <LinkPrevNext rel="next" disabled={paginaAtual === ultimaPagina} 
-                            atualizaDuvidasCallback={() => this.buscaDuvidas(paginaAtual + 1)} />
+                            atualizaDuvidasCallback={() => this._buscaDuvidas(paginaAtual + 1)} />
                 </nav>
             </div>
     }
