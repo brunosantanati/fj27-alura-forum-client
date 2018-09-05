@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './style.css';
 import IconeNotSolved from './resources/icon-not-solved.svg';
+import IconeSolved from './resources/icon-solved.svg';
 import FotoPerfil from './resources/0f4657fc82d9fbe2d15eb29daaf7daa7.png';
 
 class ItemDuvidaForum extends Component {
@@ -13,12 +14,12 @@ class ItemDuvidaForum extends Component {
             <li className="forumList-item" itemID="/forum/topico-respostas-iguais-na-questao-sobre-fluxo-binario-65105" itemScope="" itemType="http://schema.org/DiscussionForumPosting">
                 <div className="forumList-item-subject">
                     <div className="forumList-item-icon">
-                        <img height="30px" width="30px" className="forumList-icon-notsolved" src={IconeNotSolved} alt="" />
+                        <img height="30px" width="30px" className={`${duvida.solved ? 'forumList-icon-solved': 'forumList-icon-notsolved'}`} src={duvida.solved ? IconeSolved : IconeNotSolved} alt="" />
                     </div>
 
                     <div className="forumList-item-subject-info">
                         <h2 className="forumList-item-subject-info-title">
-                            <a itemProp="about" className="forumList-item-subject-info-title-link" href="https://cursos.alura.com.br/forum/topico-respostas-iguais-na-questao-sobre-fluxo-binario-65105">{duvida.shortDescription}</a>
+                            <a itemProp="about" className="forumList-item-subject-info-title-link" href="#">{duvida.shortDescription}</a>
                         </h2>
 
 
@@ -43,11 +44,11 @@ class ItemDuvidaForum extends Component {
 
                 <div className="forumList-item-wrapper">
                     <div className="forumList-item-infoGroup">
-                        <a href="https://cursos.alura.com.br/user/clecio1201" className="forumList-item-info" itemProp="author" itemScope="" itemType="http://schema.org/Person">
+                        <a href="#" className="forumList-item-info" itemProp="author" itemScope="" itemType="http://schema.org/Person">
                             <img className="forumList-item-info-avatar" src={FotoPerfil} alt="" />
                             <div className="forumList-item-info-description">
                                 <p className="forumList-item-info-name">por
-                                    <strong itemProp="name">{duvida.ownerName}</strong>
+                                    <strong itemProp="name"> {duvida.ownerName}</strong>
                                 </p>
                                 <time itemProp="dateModified" dateTime="2018-07-12 15:38">
                                     <p className="forumList-item-info-updatedAt">atualizado {duvida.secondsSinceLastUpdate} segundos atrás</p>

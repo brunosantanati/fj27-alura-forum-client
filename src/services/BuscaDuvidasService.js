@@ -1,7 +1,7 @@
 import FetchAluraForumService from './FetchAluraForumService';
 import CategoriasDoForum from '../CategoriasDoForum';
 
-const tamanhoDaPagina = 3;
+const tamanhoDaPagina = 10;
 
 class BuscaDuvidasService {
 
