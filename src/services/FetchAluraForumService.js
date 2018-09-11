@@ -1,5 +1,3 @@
-import { defaultExt } from "upath";
-
 const BASE_URI = 'http://localhost:8080/api';
 
 class FetchAluraForumService {
@@ -9,8 +7,9 @@ class FetchAluraForumService {
 
         return fetch(uri)
             .then(response => {
+                console.log(JSON.stringify(response))
                 if(response.ok)
-                return response.json();
+                    return response.json();
 
                 throw new Error('Não foi possível obter dados da API');
             });

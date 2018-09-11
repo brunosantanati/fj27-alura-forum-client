@@ -22,6 +22,7 @@ class HomePage extends Component {
         <BannerForum />
         <section className="allTopics container">
         
+          <DashboardCategoriasForum />
           <PainelDuvidasForum />
 
         </section>
