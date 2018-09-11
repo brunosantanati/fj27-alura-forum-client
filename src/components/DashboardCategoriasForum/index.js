@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
 
 import './style.css';
-import MobileIcon from './resources/mobile.svg';
-import ProgracaoIcon from './resources/programacao.svg';
-import FrontEndIcon from './resources/front-end.svg';
-import InfraestruturaIcon from './resources/infraestrutura.svg';
-import DesignIcon from './resources/design-ux.svg';
-import BusinessIcon from './resources/business.svg';
 
+import PubSub from 'pubsub-js';
 import ItemDashboard from '../ItemDashBoard';
 import FetchAluraForumService from '../../services/FetchAluraForumService';
 
@@ -19,11 +14,18 @@ class DashboardCategoriasForum extends Component {
             visivel: true,
             categorias: [],
         }
+
+        this.token = PubSub.subscribe('MUDANDO_VISUALIZACAO', 
+            (mensagem, pagina) => this.setState({ visivel: pagina === 0 }))
     }
 
     componentDidMount() {
         FetchAluraForumService.get("topics/dashboard")
             .then(categorias => this.setState({categorias}));
+    }
+
+    componentWillUnmount() {
+        PubSub.unsubscribe(this.token);
     }
 
     render() {
