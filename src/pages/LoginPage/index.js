@@ -34,7 +34,7 @@ class LoginPage extends Component {
 
         FetchAluraForumService.post('auth', loginInfo)
             .then(jwt => {
-                localStorage.setItem('jwtInfo', JSON.stringify(jwt));
+                localStorage.setItem('jwt', jwt.token);
                 this.props.history.push('/');
 
             })

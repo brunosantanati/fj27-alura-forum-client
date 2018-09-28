@@ -39,13 +39,16 @@ class MenuDuvidasForum extends Component {
     }
 
     renderBotaoNovoTopico = () => {
-        const jwt = localStorage.getItem('jwtInfo');
+        const jwt = localStorage.getItem('jwt');
     
-        if( jwt && !JWTs.isExpired(JSON.parse(jwt)) ) {
+        if( jwt && !JWTs.isExpired(jwt) ) {
             return (
                 <div className="title-and-new-topic">
                     <span className="title">Tópicos mais recentes</span>
-                    <a href="#" className="button-new-topic">Criar novo tópico</a>
+                    <button className="button-new-topic" 
+                            onClick={() => this.props.history.push('/topics-form')}>
+                        Criar novo tópico
+                    </button>
                 </div>
             );    
 

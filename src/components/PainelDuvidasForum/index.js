@@ -39,7 +39,7 @@ class PainelDuvidasForum extends Component {
 
         return (
             <div>
-                <MenuDuvidasForum atualizaDuvidasCallback={this.recarregaDuvidas}/>
+                <MenuDuvidasForum atualizaDuvidasCallback={this.recarregaDuvidas} {...this.props}/>
                 <div>{
                     duvidas.content.map(duvida => <ItemDuvidaForum duvida={duvida} key={String(duvida.id)}/>)
                 }</div>

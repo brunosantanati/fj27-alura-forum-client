@@ -17,20 +17,17 @@ class FetchAluraForumService {
 
     static post(resource, data) {
         const uri = `${BASE_URI}/${resource}`;
-
-        const headers = new Headers({
-            'Content-type': 'application/json'
-        });
-
-        const jwtInfo = localStorage.getItem("jwtInfo");
-        if(jwtInfo) {
-            headers.append('Authentication', `${jwtInfo.tokenType} ${jwtInfo.token}`);
-        }
+        
+        const jwt = localStorage.getItem("jwt");
+        const bearerToken = `Bearer ${jwt}`;
 
         const requestDetails = {
             method: 'POST',
             body: JSON.stringify(data),
-            headers            
+            headers: new Headers({
+                "Content-type": "application/json",
+                "Authorization": bearerToken
+            })      
         }
 
         return fetch(uri, requestDetails)
@@ -39,9 +36,11 @@ class FetchAluraForumService {
                 if(response.ok)
                     return response.json();
 
-                const error = new Error('Não foi possível postar dados para a API');
-                error.httpStatus = response.status;
-                throw error;
+                throw {
+                    message: 'Não foi possível postar dados para a API',
+                    httpStatus: response.status,
+                    responseBody: response.json()
+                };
             })
     }
 } 

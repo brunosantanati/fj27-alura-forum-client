@@ -18,9 +18,9 @@ class HeaderForum extends Component {
     }
 
     componentDidMount() {
-        const jwt = localStorage.getItem('jwtInfo');
+        const jwt = localStorage.getItem('jwt');
         
-        if( jwt && !JWTs.isExpired(JSON.parse(jwt)) ) {
+        if( jwt && !JWTs.isExpired(jwt) ) {
             this.setState({hasLoggedUser: true})
         }
     }

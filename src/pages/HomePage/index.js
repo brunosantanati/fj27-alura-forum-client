@@ -18,7 +18,7 @@ class HomePage extends Component {
         <section className="allTopics container">
         
           <DashboardCategoriasForum />
-          <PainelDuvidasForum />
+          <PainelDuvidasForum {...this.props}/>
 
         </section>
         <FooterForum /> 
