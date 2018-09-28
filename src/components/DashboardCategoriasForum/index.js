@@ -35,7 +35,7 @@ class DashboardCategoriasForum extends Component {
                     <ul className="dashboard-categoryList">
                         {
                             this.state.categorias.map(categoria =>
-                                <ItemDashboard item={categoria}/>
+                                <ItemDashboard item={categoria} key={categoria.categoryName}/>
                             )
                         }
                     </ul>

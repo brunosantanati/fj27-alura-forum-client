@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './style.css';
 
-import BuscaDuvidasService from '../../services/BuscaDuvidasService';
 import CategoriasDoForum from '../../CategoriasDoForum';
+import JWTs from '../../infra/JWTs';
 
 class MenuDuvidasForum extends Component {
 
@@ -14,7 +14,7 @@ class MenuDuvidasForum extends Component {
             seletorDeCatoriaAtivo: false
         }
     }
-
+    
     toggleDropDownCategoria = () => {
         this.setState({seletorDeCatoriaAtivo: !this.state.seletorDeCatoriaAtivo})
     }
@@ -38,6 +38,24 @@ class MenuDuvidasForum extends Component {
         this.props.atualizaDuvidasCallback(options);
     }
 
+    renderBotaoNovoTopico = () => {
+        const jwt = localStorage.getItem('jwtInfo');
+    
+        if( jwt && !JWTs.isExpired(JSON.parse(jwt)) ) {
+            return (
+                <div className="title-and-new-topic">
+                    <span className="title">Tópicos mais recentes</span>
+                    <a href="#" className="button-new-topic">Criar novo tópico</a>
+                </div>
+            );    
+
+        } else {
+            return (
+                <div className="title-and-new-topic"></div>
+            );
+        }
+    }
+
     render() {
         const { categoriaAtiva } = this.state;
 
@@ -47,11 +65,7 @@ class MenuDuvidasForum extends Component {
                     <form className="forumFilter-form" action="https://cursos.alura.com.br/forum/todos/1"></form>
 
                     <div className="container">
-
-                        <div className="title-and-new-topic">
-                            <span className="title">Tópicos mais recentes</span>
-                            <a href="https://cursos.alura.com.br/forum/offtopic/novo" className="button-new-topic">Criar novo tópico</a>
-                        </div>
+                        {this.renderBotaoNovoTopico()}
 
                         <div className="categories-restrictions-and-search">
                             <fieldset className="select-filter">

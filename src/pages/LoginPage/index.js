@@ -9,39 +9,82 @@ import IconeDesignUX from './resources/design-ux.svg';
 import IconeFrontEnd from './resources/front-end.svg';
 import IconeInfra from './resources/infraestrutura.svg';
 import IconeProgramacao from './resources/programacao.svg';
+import IconeErro from './resources/error.svg'
 
 import HeaderForum from '../../components/HeaderForum';
 import FooterForum from '../../components/FooterForum';
+import FetchAluraForumService from '../../services/FetchAluraForumService';
 
 class LoginPage extends Component {
+
+    constructor() {
+        super();
+        this.state = {
+            mensagemDeValidacao: ''
+        }
+    }
+
+    efetuaLogin = (event) => {
+        event.preventDefault();
+
+        const loginInfo = {
+            email: this.inputEmail.value,
+            password: this.inputPassword.value
+        };
+
+        FetchAluraForumService.post('auth', loginInfo)
+            .then(jwt => {
+                localStorage.setItem('jwtInfo', JSON.stringify(jwt));
+                this.props.history.push('/');
+
+            })
+            .catch(error => {
+                if(error.httpStatus === 400)
+                    this.setState({mensagemDeValidacao: 'Não foi possível efetuar login. Email ou senha inválida'})
+                else
+                    this.setState({mensagemDeValidacao: 'Não foi possível efetuar login.'})
+            })
+    }
+
+    renderizaMensagemValidacao = () => {
+        if (this.state.mensagemDeValidacao !== '')
+            return (
+                <div className="alert" data-category="error" role="alert">
+                    <img alt="" className="alert-icon" src={IconeErro} />
+                    <p className="alert-message">{this.state.mensagemDeValidacao}</p>
+                </div>
+            );
+    }
 
     render() {
         return (
             <div>
-                <HeaderForum hasLoggedUser={false} />
+                <HeaderForum />
 
                 <div className="container">
+
+                    {this.renderizaMensagemValidacao()}
 
                     <section className="sign">
                         <section className="signin">
                             <h2 className="title">Já é nosso aluno?</h2>
                             <p className="subtitle">Faça seu login e boa aula!</p>
-                            <form className="signin-form" action="/signin" method="post">
+                            <form className="signin-form" action="/signin" method="post" 
+                                    onSubmit={this.efetuaLogin}>
+                                
                                 <label htmlFor="login-email">E-mail</label>
-                                <input className="fill-with-cached-email" type="email" required="" name="email" id="login-email" value="" autoFocus="" />
+                                <input type="email" required name="email" id="login-email" 
+                                        ref={(input) => this.inputEmail = input}/>
 
                                 <label htmlFor="password">Senha</label>
-                                <input type="password" required="" name="password" id="password" />
+                                <input type="password" required name="password" id="password" 
+                                        ref={(input) => this.inputPassword = input}/>
 
                                 <input type="hidden" name="uriOnError" value="" />
 
                                 <button className="btn-login" type="submit">
                                     Entrar
                                 </button>
-
-                                <a className="forgotPassword-link">
-                                    Esqueci minha senha
-                                </a>
                             </form>
                         </section>
 
@@ -50,7 +93,7 @@ class LoginPage extends Component {
                             <p className="subtitle">Esqueceu sua senha? Digite seu e-mail que enviaremos um link para definir uma nova senha.</p>
 
                             <form className="forgotPassword-form" action="/auth/sendPasswordRecoveryEmail" method="post">
-                                <input type="email" required="" placeholder="E-mail" id="email" name="email" className="input forgot-password-email" value="" />
+                                <input type="email" required="" placeholder="E-mail" id="email" name="email" className="input forgot-password-email" defaultValue="" />
 
                                 <button className="forgotPassword-btn" type="submit">
                                     Recuperar
