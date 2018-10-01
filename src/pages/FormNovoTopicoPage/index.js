@@ -17,7 +17,7 @@ class FormNovoTopicoPage extends Component {
             errosDeValidacao: {}
         }
     }
-
+    
     enviarDuvida = (event) => {
         event.preventDefault();
 
@@ -25,7 +25,7 @@ class FormNovoTopicoPage extends Component {
             shortDescription: this.descricaoCurta.value,
             content: this.duvida.value,
             courseId: this.state.cursoSelecionado
-        }
+        }   
 
         FetchAluraForumService.post("topics", newTopic)
             .then(json => {
@@ -87,10 +87,7 @@ class FormNovoTopicoPage extends Component {
                                 <legend className="title">Novo Tópico</legend>
 
                                 <select value={this.state.cursoSelecionado} 
-                                        onChange={(event) => {
-                                            alert(event.target.value)
-                                            this.setState({cursoSelecionado: event.target.value})
-                                        }}>
+                                        onChange={(event) => this.setState({cursoSelecionado: event.target.value})}>
                                     <option value={null}>Selecione o curso</option>
                                     {
                                         cursos.map(curso => <option key={curso.id} 

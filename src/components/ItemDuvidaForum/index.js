@@ -4,6 +4,8 @@ import IconeNotSolved from './resources/icon-not-solved.svg';
 import IconeSolved from './resources/icon-solved.svg';
 import FotoPerfil from './resources/0f4657fc82d9fbe2d15eb29daaf7daa7.png';
 
+import UltimaAtualizacao from '../UltimaAtualizacao';
+
 class ItemDuvidaForum extends Component {
     render() {
         const { duvida } = this.props;
@@ -51,7 +53,9 @@ class ItemDuvidaForum extends Component {
                                     <strong itemProp="name"> {duvida.ownerName}</strong>
                                 </p>
                                 <time itemProp="dateModified" dateTime="2018-07-12 15:38">
-                                    <p className="forumList-item-info-updatedAt">atualizado {duvida.secondsSinceLastUpdate} segundos atrás</p>
+                                    <p className="forumList-item-info-updatedAt">
+                                        <UltimaAtualizacao secondsSinceLastUpdate={duvida.secondsSinceLastUpdate} />
+                                    </p>
                                 </time>
                             </div>
                         </a>
