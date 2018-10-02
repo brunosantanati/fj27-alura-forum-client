@@ -2,14 +2,26 @@ import React, { Component } from 'react';
 import './style.css';
 import './prettify.css';
 
+import FotoDePerfil from './resources/foto-perfil.png';
+import UltimaAtualizacao from '../UltimaAtualizacao';
+
 class RespostaTopico extends Component {
 
+    marcaSolucao = (event) => {
+        event.preventDefault();
+        const { idTopico, resposta } = this.props;
+
+        alert(`Ainda vamos implementar essa feature: /api/topics/${idTopico}/answers/${resposta.id}`);
+    }
+
     render() {
+        const { idTopico, resposta } = this.props;
+
         return (
             <section itemProp="suggestedAnswer" itemScope="" itemType="http://schema.org/Answer" className="topic-post" id="690911">
                 <div className="container">
 
-                    {this.props.isSolution && 
+                    {resposta.solution && 
                         <div className="topic-post-solved">
                             <span className="topic-post-solved-text">solução</span>
                         </div>
@@ -17,40 +29,33 @@ class RespostaTopico extends Component {
 
                     <section className="topic-post-header">
                         <section itemProp="author" itemScope="" itemType="http://schema.org/Person" className="topic-post-author">
-                            <a href="/user/wandersonmaceds" className="topic-post-author-photo">
-                                <img src="https://www.gravatar.com/avatar/3660fcfb961d50410221b91c335353e9.png?r=PG&amp;size=60x60&amp;d=https%3A%2F%2Fcursos.alura.com.br%2Fimages%2Fforum%2Favatar_w.png"
+                            <span className="topic-post-author-photo">
+                                <img src={FotoDePerfil}
                                     alt="" className="topic-post-author-photo-img" />
-                            </a>
+                            </span>
 
                             <div className="topic-post-author-details">
-                                <a href="/user/wandersonmaceds" itemProp="name" className="topic-post-author-name">
-                                    Wanderson Macêdo
-                                </a>
-                                <div className="topic-post-author-exp">(2412.4k
-                                    <span>xp</span>, 4824
-                                    <span>posts</span>)</div>
-                                <span className="topic-post-author-moderator">Moderador</span>
-                                <span className="topic-post-author-desc">Monitor em Fórum</span>
+                                <span itemProp="name" className="topic-post-author-name">
+                                    {resposta.ownerName}
+                                </span>
+                                <div style={{marginLeft: '10px'}} className="topic-post-author-exp">(2412.4k <span>xp</span>, 4824 <span>posts</span>)</div>
+                                <span className="topic-post-author-desc">Usuário da Alura</span>
                             </div>
                         </section>
 
-                        <time itemProp="dateCreated" dateTime="2018-07-20 14:26">
-                            <span className="topic-post-date">1 hora atrás</span>
-                        </time>
+                        <span className="topic-post-date">
+                            <UltimaAtualizacao lastUpdate={resposta.creationTime} />
+                        </span>
                     </section>
 
                     <section itemProp="text" className="topic-post-content">
-                        <p>Oi Kelvin, o caminho para o javadoc command depende um pouco, você está no Windows? Seu Java está no PATH do
-                            sistema? O Eclipse deveria conseguir achar seu javadoc</p>
+                        {resposta.content}
                     </section>
 
                     <div className="topic-post-actions answer-options">
-                        <a className="topic-button topic-post-editButton" role="button" href="/forum/editar/post/690911">Editar</a>
-                        
                         {!this.props.isSolution && 
-                            <form className="topic-post-solveForm" action="/forum/solucao" method="POST">
-                                <input type="hidden" value="690911" name="post.id" />
-                                <button type="submit" className="topic-button topic-post-solveButton">
+                            <form className="topic-post-solveForm">
+                                <button onClick={this.marcaSolucao} className="topic-button topic-post-solveButton">
                                     <span className="topic-post-solveButton-hideMobile">Marcar como</span> solução</button>
                             </form>
                         }

@@ -5,7 +5,15 @@ class FetchAluraForumService {
     static get(resource) {
         const uri = `${BASE_URI}/${resource}`;
 
-        return fetch(uri)
+        const requestDetails = {
+            method: 'GET',
+            headers: new Headers({
+                "Accept": "application/json",
+                "Accept-Language": "pt-BR"
+            })      
+        }
+
+        return fetch(uri, requestDetails)
             .then(response => {
                 
                 if(response.ok)
@@ -25,8 +33,10 @@ class FetchAluraForumService {
             method: 'POST',
             body: JSON.stringify(data),
             headers: new Headers({
-                "Content-type": "application/json",
-                "Authorization": bearerToken
+                "Content-Type": "application/json",
+                "Authorization": bearerToken,
+                "Accept": "application/json",
+                "Accept-Language": "pt-BR"
             })      
         }
 

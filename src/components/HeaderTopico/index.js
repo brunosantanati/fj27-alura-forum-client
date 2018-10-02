@@ -1,56 +1,52 @@
 import React, { Component } from 'react';
 import './style.css';
 
+import UltimaAtualizacao from '../UltimaAtualizacao';
+
 class HeaderTopico extends Component {
 
+    fechaTopico = () => {
+        alert("Ainda não implementamos essa feature =)")
+    }
+    
     render() {
+        const { topico } = this.props;
+
         return (
             <header className="topic-header">
                 <div className="topic-header-container">
                     <div className="topic-header-container-info">
                         <h1 itemProp="name" className="topic-header-container-title">
-                            Como resolver o assincronismo de uma Post Request no Ionic?
+                            {topico.shortDescription}
                         </h1>
 
                         <nav className="topic-breadCrumb">
                             <ol className="topic-breadCrumb-list">
 
                                 <li className="topic-breadCrumb-item">
-                                    <a id="topic-breadCrumb-item-category-64479" href="/forum/categoria-mobile" className="topic-breadCrumb-item-link">Mobile</a>
+                                    <span className={`topic-breadCrumb-item-link topic-breadCrumb-item-category-${topico.categoryName}`}>{topico.categoryName}</span>
                                 </li>
 
+                                <li className="topic-breadCrumb-item">
+                                    <span className={`topic-breadCrumb-item-link topic-breadCrumb-item-category-${topico.categoryName} subcategory`}>{topico.subcategoryName}</span>
+                                </li>
+
+                                <li className="topic-breadCrumb-item">
+                                    <span className={`topic-breadCrumb-item-link topic-breadCrumb-item-category-${topico.categoryName} course`}>{topico.courseName}</span>
+                                </li>
                             </ol>
                         </nav>
-
-                        <div className="topic-container-details-moderator">
-
-                            <a href="/forum/modify/breadcrumb/64479">Mudar categoria</a> |
-
-                            <a id="close-link" href="/forum/topic/toggle-status/64479">
-                                Fechar tópico
-                            </a>
-                        </div>
                     </div>
 
                     <div className="topic-header-container-details">
-                        <div className="topic-header-container-details-date">
-                            <time itemProp="dateCreated" dateTime="03/07/18">
-                                2 semanas atrás
-                            </time>
+                        <div style={textStyle} className="topic-header-container-details-date">
+                            Atualizado <UltimaAtualizacao lastUpdate={topico.lastUpdate}/>
                         </div>
 
-                        <div className="topic-header-container-details-edit">
-                            <a className="topic-header-container-details-edit-link" href="/forum/topic/edit/64479">Editar tópico</a>
-                        </div>
-
-                        <div className="topic-header-container-details-watch">
-                            <label className="topic-header-container-details-labelFollow" htmlFor="follow">acompanhar tópico</label>
-                            <input className="topic-header-container-details-input" id="follow" type="checkbox" name="follow" data-topic="64479" />
-                        </div>
-
-                        <div className="topic-header-container-details-pin">
-                            <label className="topic-header-container-details-labelPin" htmlFor="pin">pinar tópico</label>
-                            <input className="topic-header-container-details-input" id="pin" type="checkbox" name="pin" data-topic="64479" />
+                        <div className="topic-container-details-moderator">
+                            <span style={linkStyle} onClick={this.fechaTopico}>
+                                Fechar tópico
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -60,3 +56,16 @@ class HeaderTopico extends Component {
 }
 
 export default HeaderTopico;
+
+const linkStyle = {
+    color: '#c0392b',
+    cursor: 'pointer',
+    fontSize: '16px',
+    fontWeight: '350',
+    textDecoration: 'underline'
+}
+
+var textStyle = {
+    fontSize: '18px',
+    fontWeight: '350'
+};

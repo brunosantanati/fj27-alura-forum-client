@@ -10,16 +10,29 @@ class UltimaAtualizacao extends React.Component {
     }
 
     render() {
-        const { secondsSinceLastUpdate } = this.props;
-
         const currentDate = new Date();
-        return (
-            <div>
-                atualizado <Moment fromNow subtract={{ seconds: secondsSinceLastUpdate }} interval={0}>
-                    {currentDate}
-                </Moment>
-            </div>
-        );
+        
+        const { secondsSinceLastUpdate } = this.props;
+        if (secondsSinceLastUpdate)
+            return (
+                <span>
+                    Atualizado <Moment fromNow subtract={{ seconds: secondsSinceLastUpdate }} interval={0}>
+                        {currentDate}
+                    </Moment>
+                </span>
+            );
+        
+        const { lastUpdate } =  this.props;
+        if (lastUpdate)
+            return (
+                <span style={this.props.style}>
+                    <Moment fromNow interval={0}>
+                        {lastUpdate}
+                    </Moment>
+                </span>
+            );
+
+        return null;
     }
 }
 

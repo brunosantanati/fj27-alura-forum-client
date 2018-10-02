@@ -1,6 +1,60 @@
 import React, { Component } from 'react';
+import IconeAlerta from './resources/alert.svg';
+import FetchAluraForumService from '../../services/FetchAluraForumService';
 
 class NovaRespostaTopico extends Component {
+
+    constructor() {
+        super();
+        this.state = {
+            errosDeValidacao: {}
+        }
+    }
+
+    adicionaResposta = (event) => {
+        event.preventDefault();
+
+        const novaResposta = {
+            content: this.resposta.value
+        }
+
+        const atualizaTopico = (novaResposta) => 
+                this.props.atualizaRespostas(novaResposta)
+
+        FetchAluraForumService.post(`topics/${this.props.idTopico}/answers`, novaResposta)
+            .then(novaResposta => {
+                atualizaTopico(novaResposta)
+                this.resposta.value = '';
+            })
+            .catch(error => {
+                if(error.httpStatus === 400)
+                    return error.responseBody;
+                else
+                    alert("Algo deu errado com a API")
+            })
+            .then(erros => this.setState({errosDeValidacao: erros}))
+    }
+
+    renderizaMensagemValidacao = (campo) => {
+        if (!this.state.errosDeValidacao)
+            return;
+
+        const { numberOfErrors, errors } = this.state.errosDeValidacao
+
+        if (!numberOfErrors || numberOfErrors <= 0)
+            return;
+        
+        const errosDoCampo = errors.filter(error => error['field'] === campo)        
+        return errosDoCampo.length > 0 && (
+            <div>{
+                errosDoCampo.map(erro => 
+                    <div style={{backgroundColor: '#f9fbfd', paddingTop: '5px'}} key={erro.message}>
+                        <span className="validation-message">{erro.message}</span>
+                        <br/>
+                    </div>)
+            }</div>
+        )
+    }
 
     render() {
         return (
@@ -9,7 +63,7 @@ class NovaRespostaTopico extends Component {
                 {this.props.solved &&
                     <div className="container">
                         <div className="alert" data-category="alert" role="alert">
-                            <img alt="" className="alert-icon" src="/images/gnarus/alert/alert.svg" />
+                            <img alt="" className="alert-icon" src={IconeAlerta} />
                             <p className="alert-message">Esta dúvida já foi marcada como solucionada, se a dúvida ainda persiste, por favor abra outra discussão.</p>
                         </div>
                     </div>
@@ -19,62 +73,25 @@ class NovaRespostaTopico extends Component {
                     <div className="container">
                         <h2 className="topic-reply-title">O que você acha disso?</h2>
 
-                        <form action="/forum/post/novo" method="post" className="topic-reply-form">
-                            <input type="hidden" name="topicId" value="64479" />
-                            <input type="hidden" name="authorUsername" value="rafael-rollo" />
-
+                        <form className="topic-reply-form">
                             <div className="markdownEditor isToggled" id="markdownEditor-">
-                                {/* <!-- START: changes on this HTML should be replied on MarkDown.java --> */}
+                                
                                 <div className="markdownEditor-buttons ">
                                     <button className="markdownEditor-button markdownEditor-button-code " data-insert-code="insira seu código aqui" type="button">
-                                        Inserir código
+                                        Deixe sua resposta
                                     </button>
-                                    <div className="markdownEditor-buttons-options">
-                                        <button className="markdownEditor-button markdownEditor-button-preview isToggled" type="button" data-js-toggle="#markdownEditor-">
-                                            Expandir
-                                        </button>
-                                        <button aria-controls="markdownEditor-help" aria-expanded="false" className="markdownEditor-button markdownEditor-button-format"
-                                            type="button" data-js-toggle="#markdownEditor- .markdownEditor-help" aria-label="Abrir instruções de formatação do texto">
-                                            Formatação
-                                        </button>
-                                    </div>
                                 </div>
 
                                 <div className="markdownEditor-area">
-                                    <aside className="markdownEditor-help formattedText" aria-hidden="true" id="markdownEditor-help" tabIndex="0">
-
-                                        <h2>How to format code</h2>
-                                        <ul>
-                                            <li>É possível criar blocos de código adicionando três backticks (```) antes e depois do código</li>
-                                            <li>Para escapar a formatação, utilize crases `dessa _forma_`</li>
-                                            <li>Serão exibidas apenas tags HTML e XML que estiverem entre ``</li>
-                                        </ul>
-
-                                        <h2>Formatação básica</h2>
-                                        <ul>
-                                            <li>**
-                                                <strong>negrito</strong>**</li>
-                                            <li>*
-                                                <em>itálico</em>*</li>
-                                            <li>~~
-                                                <del>riscado (Strikethrough)</del>~~ </li>
-                                        </ul>
-
-                                        <h2>Como formatar links</h2>
-                                        <ul>
-                                            <li>&lt;http://google.com&gt;</li>
-                                            <li>[Google](http://google.com)</li>
-                                        </ul>
-                                    </aside>
-
-                                    <textarea aria-live="polite" aria-atomic="true" className="markdownEditor-source markdownEditor-textArea " placeholder="" name="text"
-                                        maxLength="5000" id="markdownEditor--ta"></textarea>
-
-                                    <output className="markdownEditor-preview formattedText markdownEditor-textArea " htmlFor="markdownEditor--ta"></output>
+                                    <textarea aria-live="polite" aria-atomic="true" 
+                                        className="markdownEditor-source markdownEditor-textArea"
+                                        maxLength="5000" id="markdownEditor--ta"
+                                        required={true} ref={textarea => this.resposta = textarea}></textarea>
                                 </div>
-                                {/* <!-- END: changes on this HTML should be replied on MarkDown.java --> */}
+                                {this.renderizaMensagemValidacao('content')}  
                             </div>
-                            <input className="topic-reply-form-submit" type="submit" value="Responder" />
+                            <input className="topic-reply-form-submit" type="submit" value="Responder" 
+                                onClick={this.adicionaResposta}/>
                         </form>
                     </div>
                 </section>

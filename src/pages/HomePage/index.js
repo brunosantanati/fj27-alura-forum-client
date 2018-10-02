@@ -8,9 +8,7 @@ import DashboardCategoriasForum from '../../components/DashboardCategoriasForum'
 import PainelDuvidasForum from '../../components/PainelDuvidasForum';
 
 class HomePage extends Component {
-  
   render() {
-
     return (
       <div>
         <HeaderForum />

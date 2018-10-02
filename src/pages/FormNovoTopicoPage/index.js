@@ -24,7 +24,7 @@ class FormNovoTopicoPage extends Component {
         const newTopic = { 
             shortDescription: this.descricaoCurta.value,
             content: this.duvida.value,
-            courseId: this.state.cursoSelecionado
+            courseName: this.state.cursoSelecionado
         }   
 
         FetchAluraForumService.post("topics", newTopic)

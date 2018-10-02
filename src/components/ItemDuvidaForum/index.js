@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import './style.css';
 import IconeNotSolved from './resources/icon-not-solved.svg';
 import IconeSolved from './resources/icon-solved.svg';
-import FotoPerfil from './resources/0f4657fc82d9fbe2d15eb29daaf7daa7.png';
-
+import FotoPerfil from './resources/foto-perfil.png';
+import { withRouter } from 'react-router-dom'
 import UltimaAtualizacao from '../UltimaAtualizacao';
 
 class ItemDuvidaForum extends Component {
+
     render() {
         const { duvida } = this.props;
 
@@ -21,7 +22,8 @@ class ItemDuvidaForum extends Component {
 
                     <div className="forumList-item-subject-info">
                         <h2 className="forumList-item-subject-info-title">
-                            <a itemProp="about" className="forumList-item-subject-info-title-link" href="#">{duvida.shortDescription}</a>
+                            <span itemProp="about" onClick={() => this.props.history.push('/topic', {idTopico: duvida.id})} 
+                                    className="forumList-item-subject-info-title-link link">{duvida.shortDescription}</span>
                         </h2>
 
 
@@ -75,4 +77,4 @@ class ItemDuvidaForum extends Component {
         </div>
         );
     }
-} export default ItemDuvidaForum;
+} export default withRouter(ItemDuvidaForum);
