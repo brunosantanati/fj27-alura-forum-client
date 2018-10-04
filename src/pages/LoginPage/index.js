@@ -32,18 +32,27 @@ class LoginPage extends Component {
             password: this.inputPassword.value
         };
 
-        FetchAluraForumService.post('auth', loginInfo)
+        const requestDetails = {
+            method: 'POST',
+            body: JSON.stringify(loginInfo),
+            headers: new Headers({
+                "Content-Type": "application/json",
+                "Accept-Language": "pt-BR"
+            })      
+        }
+
+        fetch('http://localhost:8080/api/auth', requestDetails)
+            .then(response => {
+                if (response.ok)
+                    return response.json();
+
+                throw new Error('Não foi possível efetuar login. Email ou senha inválida')
+            })
             .then(jwt => {
                 localStorage.setItem('jwt', jwt.token);
                 this.props.history.push('/');
-
             })
-            .catch(error => {
-                if(error.httpStatus === 400)
-                    this.setState({mensagemDeValidacao: 'Não foi possível efetuar login. Email ou senha inválida'})
-                else
-                    this.setState({mensagemDeValidacao: 'Não foi possível efetuar login.'})
-            })
+            .catch(error => this.setState({mensagemDeValidacao: error.message}));
     }
 
     renderizaMensagemValidacao = () => {
