@@ -3,7 +3,6 @@ import './style.css';
 import IconeNotSolved from './resources/icon-not-solved.svg';
 import IconeSolved from './resources/icon-solved.svg';
 import FotoPerfil from './resources/foto-perfil.png';
-import { withRouter } from 'react-router-dom'
 import UltimaAtualizacao from '../UltimaAtualizacao';
 
 class ItemDuvidaForum extends Component {
@@ -77,4 +76,4 @@ class ItemDuvidaForum extends Component {
         </div>
         );
     }
-} export default withRouter(ItemDuvidaForum);
+} export default ItemDuvidaForum;
