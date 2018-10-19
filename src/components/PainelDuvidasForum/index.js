@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PubSub from 'pubsub-js';
 
 import MenuDuvidasForum from '../MenuDuvidasForum';
 import ItemDuvidaForum from '../ItemDuvidaForum';
@@ -27,8 +26,6 @@ class PainelDuvidasForum extends Component {
     }
 
     recarregaDuvidas = (options = {}) => {
-        PubSub.publish('MUDANDO_VISUALIZACAO', options.pagina ? options.pagina : 0);
-
         BuscaDuvidasService.executa(options)
             .then(json => this.setState({ duvidas: json, menu: options }))
             .catch(e => alert(e.message));

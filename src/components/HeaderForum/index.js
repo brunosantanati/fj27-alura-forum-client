@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './style.css';
 
 import IconeBusca from './resources/icon-busca.svg';
-import Avatar from './resources/avatar.svg';
+import Avatar from './resources/foto-perfil.png';
 import IconeNotificacoes from './resources/icon-news-bell.svg';
 import LogoAlura from './resources/logo-alura.svg';
 
