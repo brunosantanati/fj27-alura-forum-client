@@ -3,7 +3,6 @@ import './style.css';
 import IconeNotSolved from './resources/icon-not-solved.svg';
 import IconeSolved from './resources/icon-solved.svg';
 import FotoPerfil from './resources/foto-perfil.png';
-import { withRouter } from 'react-router-dom'
 import UltimaAtualizacao from '../UltimaAtualizacao';
 
 class ItemDuvidaForum extends Component {
@@ -22,7 +21,7 @@ class ItemDuvidaForum extends Component {
 
                     <div className="forumList-item-subject-info">
                         <h2 className="forumList-item-subject-info-title">
-                            <span itemProp="about" onClick={() => this.props.history.push('/topic', {idTopico: duvida.id})} 
+                            <span itemProp="about" onClick={() => alert('Ainda não implementamos essa feature =)')} 
                                     className="forumList-item-subject-info-title-link link">{duvida.shortDescription}</span>
                         </h2>
 
@@ -77,4 +76,4 @@ class ItemDuvidaForum extends Component {
         </div>
         );
     }
-} export default withRouter(ItemDuvidaForum);
+} export default ItemDuvidaForum;

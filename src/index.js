@@ -39,7 +39,6 @@ const AluraForum = () => (
         <Switch>
             <PrivateRoute path="/topics-form" component={FormNovoTopicoPage} />
             <Route exact path="/" component={HomePage} />
-            <Route exact path="/topic" component={TopicoPage} />
             <Route path="/login" component={LoginPage} />
         </Switch>
     </Router>
