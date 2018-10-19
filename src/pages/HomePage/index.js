@@ -14,10 +14,7 @@ class HomePage extends Component {
         <HeaderForum />
         <BannerForum />
         <section className="allTopics container">
-        
-          <DashboardCategoriasForum />
           <PainelDuvidasForum {...this.props}/>
-
         </section>
         <FooterForum /> 
  
