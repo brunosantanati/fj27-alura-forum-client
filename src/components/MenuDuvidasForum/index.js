@@ -46,7 +46,7 @@ class MenuDuvidasForum extends Component {
                 <div className="title-and-new-topic">
                     <span className="title">Tópicos mais recentes</span>
                     <button className="button-new-topic" 
-                            onClick={() => this.props.history.push('/topics-form')}>
+                            onClick={() => alert('Ainda não implementamos essa feature =)')}>
                         Criar novo tópico
                     </button>
                 </div>
