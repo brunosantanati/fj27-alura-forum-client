@@ -3,7 +3,6 @@ import PubSub from 'pubsub-js';
 
 import MenuDuvidasForum from '../MenuDuvidasForum';
 import ItemDuvidaForum from '../ItemDuvidaForum';
-import PaginacaoForum from '../PaginacaoForum';
 
 import BuscaDuvidasService from '../../services/BuscaDuvidasService';
 
@@ -12,13 +11,7 @@ class PainelDuvidasForum extends Component {
     constructor() {
         super();
         this.state = {
-            duvidas: {
-                content: []
-            },
-            menu: {
-                categoria: null,
-                status: null
-            }
+            duvidas: []
         }
     }
 
@@ -27,8 +20,6 @@ class PainelDuvidasForum extends Component {
     }
 
     recarregaDuvidas = (options = {}) => {
-        PubSub.publish('MUDANDO_VISUALIZACAO', options.pagina ? options.pagina : 0);
-
         BuscaDuvidasService.executa(options)
             .then(json => this.setState({ duvidas: json, menu: options }))
             .catch(e => alert(e.message));
@@ -41,13 +32,8 @@ class PainelDuvidasForum extends Component {
             <div>
                 <MenuDuvidasForum atualizaDuvidasCallback={this.recarregaDuvidas} {...this.props}/>
                 <div>{
-                    duvidas.content.map(duvida => <ItemDuvidaForum duvida={duvida} key={String(duvida.id)}/>)
+                    duvidas.map(duvida => <ItemDuvidaForum duvida={duvida} key={String(duvida.id)}/>)
                 }</div>
-                <PaginacaoForum totalDePaginas={duvidas.totalPages} 
-                        paginaAtual={duvidas.number} 
-                        atualizaDuvidasCallback={this.recarregaDuvidas}
-                        filtros={this.state.menu}/>
-
             </div>
         );
     }

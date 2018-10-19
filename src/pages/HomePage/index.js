@@ -4,7 +4,6 @@ import './style.css';
 import HeaderForum from '../../components/HeaderForum';
 import BannerForum from '../../components/BannerForum';
 import FooterForum from '../../components/FooterForum';
-import DashboardCategoriasForum from '../../components/DashboardCategoriasForum';
 import PainelDuvidasForum from '../../components/PainelDuvidasForum';
 
 class HomePage extends Component {
@@ -14,10 +13,7 @@ class HomePage extends Component {
         <HeaderForum />
         <BannerForum />
         <section className="allTopics container">
-        
-          <DashboardCategoriasForum />
           <PainelDuvidasForum {...this.props}/>
-
         </section>
         <FooterForum /> 
  

@@ -1,17 +1,15 @@
 import FetchAluraForumService from './FetchAluraForumService';
 import CategoriasDoForum from '../CategoriasDoForum';
 
-const tamanhoDaPagina = 10;
-
 class BuscaDuvidasService {
 
-    static executa ({categoria = CategoriasDoForum['TODAS'], status = '', pagina = 0} = {}) {
+    static executa ({categoria = CategoriasDoForum['TODAS'], status = ''} = {}) {
 
-        const resource = this._resolveURL(status, categoria, pagina, tamanhoDaPagina);
+        const resource = this._resolveURL(status, categoria);
         return FetchAluraForumService.get(resource);
     }
 
-    static _resolveURL = (status, categoria, pagina, tamanhoDaPagina) => {
+    static _resolveURL = (status, categoria) => {
         let resource = `topics?`;
 
         if (status !== '')
@@ -20,7 +18,7 @@ class BuscaDuvidasService {
         if (JSON.stringify(categoria) !== JSON.stringify(CategoriasDoForum['TODAS']))
             resource += `&categoryName=${categoria.nome}`
 
-        return resource += `&page=${pagina}&size=${tamanhoDaPagina}`;
+        return resource;
     }
 } 
 
