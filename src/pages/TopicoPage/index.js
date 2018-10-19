@@ -50,7 +50,7 @@ class TopicoPage extends Component {
 
         const topicoAtualizado = {
             ...this.state.topico,
-            answers: novaLista
+            answers: novaLista,
         }
 
         this.setState({topico: topicoAtualizado})
@@ -81,7 +81,7 @@ class TopicoPage extends Component {
 
                 <div className="topic-answers-banner">
                     <div className="container">
-                        {topico.numberOfResponses} <span>respostas</span>
+                        {topico.answers.length} <span>respostas</span>
                     </div>
                 </div>
 
