@@ -4,13 +4,9 @@ import './style.css';
 import UltimaAtualizacao from '../UltimaAtualizacao';
 
 class HeaderTopico extends Component {
-
-    fechaTopico = () => {
-        alert("Ainda não implementamos essa feature =)")
-    }
     
     render() {
-        const { topico } = this.props;
+        const { topico, fechaTopicoCallback } = this.props;
 
         return (
             <header className="topic-header">
@@ -44,7 +40,7 @@ class HeaderTopico extends Component {
                         </div>
 
                         <div className="topic-container-details-moderator">
-                            <span style={linkStyle} onClick={this.fechaTopico}>
+                            <span style={linkStyle} onClick={fechaTopicoCallback}>
                                 Fechar tópico
                             </span>
                         </div>

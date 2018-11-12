@@ -7,15 +7,8 @@ import UltimaAtualizacao from '../UltimaAtualizacao';
 
 class RespostaTopico extends Component {
 
-    marcaSolucao = (event) => {
-        event.preventDefault();
-        const { idTopico, resposta } = this.props;
-
-        alert(`Ainda vamos implementar essa feature: /api/topics/${idTopico}/answers/${resposta.id}`);
-    }
-
     render() {
-        const { idTopico, resposta } = this.props;
+        const { idTopico, resposta, marcaSolucaoCallback } = this.props;
 
         return (
             <section itemProp="suggestedAnswer" itemScope="" itemType="http://schema.org/Answer" className="topic-post" id="690911">
@@ -53,9 +46,10 @@ class RespostaTopico extends Component {
                     </section>
 
                     <div className="topic-post-actions answer-options">
-                        {!this.props.isSolution && 
+                        {!resposta.solution && 
                             <form className="topic-post-solveForm">
-                                <button onClick={this.marcaSolucao} className="topic-button topic-post-solveButton">
+                                <button onClick={(event) => marcaSolucaoCallback(event, idTopico, resposta.id)} 
+                                        className="topic-button topic-post-solveButton">
                                     <span className="topic-post-solveButton-hideMobile">Marcar como</span> solução</button>
                             </form>
                         }

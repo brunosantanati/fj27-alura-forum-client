@@ -42,7 +42,6 @@ class FetchAluraForumService {
 
         return fetch(uri, requestDetails)
             .then(response => {
-
                 if(response.ok)
                     return response.json();
 

@@ -28,6 +28,34 @@ class TopicoPage extends Component {
         FetchAluraForumService.get(`topics/${idTopico}`)
             .then(topico => this.setState({topico}));
     }
+
+    marcaSolucao = (event, idTopico, idResposta) => {
+        event.preventDefault();
+        
+        const uri = `topics/${idTopico}/answers/${idResposta}/solution`;
+        FetchAluraForumService.post(uri)
+            .then(solution => {
+
+                const listaAtualizada = this.state.topico.answers
+                    .map(answer => answer.id === solution.id ? solution : answer)
+
+                const topico = {
+                    ...this.state.topico,
+                    status: 'SOLVED',
+                    answers: listaAtualizada
+                }
+
+                this.setState({topico})
+            })
+            .catch(error => alert('Não foi possível marcar resposta como solução'))
+    }
+
+    fechaTopico = () => {
+        const uri = `topics/${this.state.topico.id}/close`;
+
+        FetchAluraForumService.post(uri)
+            .catch(error => alert('Não foi possível fechar tópico.'))
+    }
     
     showSolvedLabel() {
         const { topico } = this.state;
@@ -62,7 +90,7 @@ class TopicoPage extends Component {
 
         return answers.map(resposta => 
             <RespostaTopico key={String(resposta.id)} 
-                idTopico={id} resposta={resposta}/>)
+                idTopico={id} resposta={resposta} marcaSolucaoCallback={this.marcaSolucao}/>)
     }
     
     render() {
@@ -75,7 +103,7 @@ class TopicoPage extends Component {
 
                 {this.showSolvedLabel()}
                 <section className="allTopics container">
-                    <HeaderTopico topico={topico}/>
+                    <HeaderTopico topico={topico} fechaTopicoCallback={this.fechaTopico}/>
                     <DuvidaTopico topico={topico}/>
                 </section>
 
